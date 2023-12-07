@@ -7,7 +7,6 @@ import videoslow from "./media/react_video-slow.mp4";
 import videocute from "./media/react_video-cute.mp4";
 import videoeek from "./media/react_video-eek.mp4";
 
-
 const VIDEOS = {
   fast: videofast,
   slow: videoslow,
@@ -16,23 +15,22 @@ const VIDEOS = {
 };
 
 function App() {
+  const [menuOption, setMenuOption] = useState("fast");
   const [src, setSrc] = useState(VIDEOS.fast);
 
   const onSelectVideoHandler = (newVideo) => {
+    console.log("newVideo", newVideo);
+    setMenuOption(newVideo);
     setSrc(VIDEOS[newVideo]);
   };
 
-
- 
   return (
     <div>
       <h1>Video Player</h1>
-      <Menu onSelectVideo={onSelectVideoHandler} />
+      <Menu selected={menuOption} onSelectVideo={onSelectVideoHandler} />
       <Video src={src} />
     </div>
   );
 }
-
-
 
 export default App;
